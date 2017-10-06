@@ -44,7 +44,7 @@ void RandomSource::step() {
 	float range = noise * params[RANGE_PARAM] / 20;
 		
 	//SH
-	float clock = getf(inputs[TRIG_INPUT]), range;
+	float clock = getf(inputs[TRIG_INPUT]) + range;
 	float dtrig = (clock - lastTrig) * gSampleRate;
 	if (dtrig > DTRIG) {
 		sample = getf(inputs[SH_INPUT]);
