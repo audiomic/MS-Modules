@@ -54,7 +54,7 @@ void RandomSource::step() {
 	
 	
 	//Output
-	setf(outputs[SH_OUTPUT], sample);
+	setf(outputs[SH_OUTPUT], sample); //S&H
 	setf(outputs[NOISE_OUTPUT], noise); //Gaussian Noise
 			
 
