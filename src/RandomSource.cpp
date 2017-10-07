@@ -1,6 +1,6 @@
 #include "MS_modules.hpp"
 
-#define DTRIG 6000.0
+#define DTRIG 7000.0
 
 struct RandomSource : Module {
 		enum ParamIds {
@@ -41,7 +41,7 @@ void RandomSource::step() {
 	float noise = 2.0 * randomNormal(); 
 	
 	//add noise internally
-	float range = noise * params[RANGE_PARAM] / 20;
+	float range = noise * params[RANGE_PARAM] / 15;
 		
 	//SH
 	float clock = getf(inputs[TRIG_INPUT]) + range;
