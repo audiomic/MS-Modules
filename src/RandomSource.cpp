@@ -1,7 +1,9 @@
 #include "MS_modules.hpp"
 #include "GreenBlueSmall.cpp"
 
+
 #define DTRIG 7000.0
+
 
 struct RandomSource : Module {
 		enum ParamIds {
@@ -11,13 +13,13 @@ struct RandomSource : Module {
 		
 		enum InputIds {
 			TRIG_INPUT,
+			CV_INPUT,
 			SH_INPUT,
 			NUM_INPUTS
 		};
 		
 		enum OutputIds {
 			SH_OUTPUT,
-			NOISE_OUTPUT,
 			NUM_OUTPUTS
 		};
 		
@@ -35,14 +37,12 @@ RandomSource::RandomSource() {
 	outputs.resize(NUM_OUTPUTS);
 }
 
-
+	
 void RandomSource::step() {
 	
-	//Gaussian Noise Gen
-	float noise = 2.0 * randomNormal(); 
+	//CV
+	float range = getf(inputs[TRIG_INPUT]) * getf(inputs[CV_INPUT]) * params[RANGE_PARAM] / 15;
 	
-	//add noise internally
-	float range = noise * params[RANGE_PARAM] / 15;
 		
 	//SH
 	float clock = getf(inputs[TRIG_INPUT]) + range;
@@ -53,11 +53,11 @@ void RandomSource::step() {
 	lastTrig = clock;
 	
 	
+	float SHOut = sample * params[RANGE_PARAM] * getf(inputs[CV_INPUT], 10.0) / 10.0;
 	
 	//Output
-	setf(outputs[SH_OUTPUT], sample); //S&H
-	setf(outputs[NOISE_OUTPUT], noise); //Gaussian Noise
-			
+	setf(outputs[SH_OUTPUT], SHOut); //S&H 
+		
 
 }
 
@@ -65,7 +65,7 @@ RandomSourceWidget::RandomSourceWidget() {
 		RandomSource *module = new RandomSource();
 		setModule(module);
 		box.size = Vec(60, 380);
-		
+				
 		{
 			SVGPanel *panel = new SVGPanel();
 			panel->box.size = box.size;
@@ -76,13 +76,13 @@ RandomSourceWidget::RandomSourceWidget() {
 		addChild(createScrew<ScrewSilver>(Vec(15, 0)));
 		addChild(createScrew<ScrewSilver>(Vec(15, 365)));
 			
-		addParam(createParam<GreenBlueSmallKnob>(Vec(12, 100), module, RandomSource::RANGE_PARAM, 0.0, 1.0, 0.0));
+		addParam(createParam<GreenBlueSmallKnob>(Vec(7, 100), module, RandomSource::RANGE_PARAM, 0.0, 1.0, 0.0));
+
+		addInput(createInput<PJ3410Port>(Vec(15, 165), module, RandomSource::CV_INPUT));
+		addInput(createInput<PJ3410Port>(Vec(15, 210), module, RandomSource::SH_INPUT));
+		addInput(createInput<PJ3410Port>(Vec(15, 255), module, RandomSource::TRIG_INPUT));
 		
-		addInput(createInput<PJ3410Port>(Vec(15, 165), module, RandomSource::SH_INPUT));
-		addInput(createInput<PJ3410Port>(Vec(15, 210), module, RandomSource::TRIG_INPUT));
-		
-		addOutput(createOutput<PJ3410Port>(Vec(15, 255), module, RandomSource::SH_OUTPUT));
-		addOutput(createOutput<PJ3410Port>(Vec(15, 300), module, RandomSource::NOISE_OUTPUT));
-		
+		addOutput(createOutput<PJ3410Port>(Vec(15, 300), module, RandomSource::SH_OUTPUT));
+				
 }
 
