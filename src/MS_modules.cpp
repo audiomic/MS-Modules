@@ -1,5 +1,7 @@
 #include "MS_modules.hpp"
 
+Plugin *plugin;
+
 struct MS_modulesPlugin : Plugin {
 	MS_modulesPlugin() {
 		slug = "MS-Modules";
