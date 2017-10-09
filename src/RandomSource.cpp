@@ -43,8 +43,8 @@ RandomSource::RandomSource() {
 void RandomSource::step() {
 	
 	//sample and hold
-	float range_knob = params[RANGE_PARAM] / 15;
-   	float range_cv = getf(inputs[CV_INPUT]) * 2.0;
+	float range_knob = params[RANGE_PARAM] * 24.0;
+   	float range_cv = getf(inputs[CV_INPUT]) * 12.0;
 	float range_amt = params[CV_PARAM];
 	float range = range_knob + range_amt * range_cv;
 	float clock = getf(inputs[TRIG_INPUT]) ;
