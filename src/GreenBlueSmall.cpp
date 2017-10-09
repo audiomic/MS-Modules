@@ -21,10 +21,20 @@ namespace rack {
 // Knob
 ////////////////////
 
+struct GreenBlueLargeKnob : SVGKnob {
+	GreenBlueLargeKnob() {
+		SVGKnob(Knob);
+		box.size = Vec(46, 46);
+		minAngle = -0.83*M_PI;
+		maxAngle = 0.83*M_PI;
+		setSVG(SVG::load("plugins/MS_modules/res/GreenBlueLarge.svg"));
+	}
+}; 
+
 struct GreenBlueSmallKnob : SVGKnob {
 	GreenBlueSmallKnob() {
 		SVGKnob(Knob);
-		box.size = Vec(46, 46);
+		box.size = Vec(30, 30);
 		minAngle = -0.83*M_PI;
 		maxAngle = 0.83*M_PI;
 		setSVG(SVG::load("plugins/MS_modules/res/GreenBlueSmall.svg"));
