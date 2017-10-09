@@ -50,7 +50,7 @@ void RandomSource::step() {
 	float clock = getf(inputs[TRIG_INPUT]) ;
 	float dtrig = (clock - lastTrig) * gSampleRate;
 	if (dtrig > DTRIG) {
-		sample = getf(inputs[SH_INPUT]) + range; // + CV;
+		sample = getf(inputs[SH_INPUT]) + range;
 	}
 	lastTrig = clock;
 	
@@ -60,7 +60,7 @@ void RandomSource::step() {
 	lights[1] = sample;
 		
 	//Output
-	setf(outputs[SH_OUTPUT], SHOut); //sample and hold
+	setf(outputs[SH_OUTPUT], SHOut);
 		
 
 }
