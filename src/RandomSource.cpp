@@ -54,11 +54,11 @@ void RandomSource::step() {
 	}
 	lastTrig = clock;
 	
-	//light
-	lights[1] = sample;
-	
 	float SHOut = sample * params[RANGE_PARAM] / 10.0;
 	
+	//light
+	lights[1] = sample;
+		
 	//Output
 	setf(outputs[SH_OUTPUT], SHOut); //sample and hold
 		
