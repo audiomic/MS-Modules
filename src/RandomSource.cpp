@@ -22,7 +22,7 @@ struct RandomSource : Module {
 		
 		SchmittTrigger trigger;
 		float sample = 0.0;
-		float lights[1] = {sample};
+		float lights[1] = {};
 				
 		RandomSource() : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS) {
 			trigger.setThresholds(0.0,0.7);
