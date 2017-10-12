@@ -34,9 +34,9 @@ void RandomSource::step() {
 	
 	//sample and hold
 	float range_knob = params[RANGE_PARAM].value * 6.0;
-    float range_cv = inputs[CV_INPUT].value * 24.0 / 12.0; 
-    float range_cv_amt = params[CV_PARAM].value;
-    float range = range_knob + range_cv_amt * range_cv;
+    	float range_cv = inputs[CV_INPUT].value * 24.0 / 12.0; 
+    	float range_cv_amt = params[CV_PARAM].value;
+    	float range = range_knob + range_cv_amt * range_cv;
 		
 	if (trigger.process(inputs[TRIG_INPUT].value)) {
 		sample = inputs[SH_INPUT].normalize(range);
