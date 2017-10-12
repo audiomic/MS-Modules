@@ -50,7 +50,7 @@ void RandomSource::step() {
 	outputs[SH_OUTPUT].value = SHOut;
 		
 	}
-}
+};
 
 RandomSourceWidget::RandomSourceWidget() {
 		RandomSource *module = new RandomSource();
