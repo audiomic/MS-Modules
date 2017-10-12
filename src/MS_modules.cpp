@@ -2,15 +2,12 @@
 
 Plugin *plugin;
 
-struct MS_modulesPlugin : Plugin {
-	MS_modulesPlugin() {
-		slug = "MS-Modules";
-		name = "MS-Modules";
-		createModel<RandomSourceWidget>(this, "Random Source", "Random Source");
-	}
-};
 
-
-Plugin *init() {
-	return new MS_modulesPlugin();
+void init(rack::Plugin *p) {
+	plugin = p;		
+	plugin->slug = "MS-Modules";
+	plugin->name = "MS-Modules";
+	plugin->homepageUrl = "https://github.com/Phal-anx/MS-Modules";
+	createModel<RandomSourceWidget>(plugin, "Random Source", "Random Source");
+	
 }
