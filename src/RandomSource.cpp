@@ -1,7 +1,5 @@
 #include "MS_modules.hpp"
 
-#define DTRIG 7000.0
-
 
 struct RandomSource : Module {
 		enum ParamIds {
@@ -22,11 +20,13 @@ struct RandomSource : Module {
 			NUM_OUTPUTS
 		};
 		
-		float lastTrig = 0.0;
+		SchmittTrigger trigger;
 		float sample = 0.0;
-		float lights[1] = {};
+		float lights[1] = {sample};
 				
-		RandomSource() : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS) {}
+		RandomSource() : Module(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS) {
+			trigger.setThresholds(0.0,0.7);
+		}
 		void step();
 };
 
@@ -34,16 +34,13 @@ void RandomSource::step() {
 	
 	//sample and hold
 	float range_knob = params[RANGE_PARAM].value * 6.0;
-  	float range_cv = inputs[CV_INPUT].value * 24.0 / 12.0;
- 	float range_cv_amt = params[CV_PARAM].value;
-  	float range = range_knob + range_cv_amt * range_cv;
-	float clock = inputs[TRIG_INPUT].value;
-	float dtrig = (clock - lastTrig) * gSampleRate;
-	if (dtrig > DTRIG) {
+    float range_cv = inputs[CV_INPUT].value * 24.0 / 12.0; 
+    float range_cv_amt = params[CV_PARAM].value;
+    float range = range_knob + range_cv_amt * range_cv;
+		
+	if (trigger.process(inputs[TRIG_INPUT].value)) {
 		sample = inputs[SH_INPUT].normalize(range);
-	}
-	lastTrig = clock;
-	
+			
 	float SHOut = sample * params[RANGE_PARAM].value / 1.5;
 	
 	//light
@@ -52,7 +49,7 @@ void RandomSource::step() {
 	//Output
 	outputs[SH_OUTPUT].value = SHOut;
 		
-
+	}
 }
 
 RandomSourceWidget::RandomSourceWidget() {
