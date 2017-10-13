@@ -1,5 +1,5 @@
 #include "MS_modules.hpp"
-
+#include "DSP/digital.hpp"
 
 struct RandomSource : Module {
 		enum ParamIds {
