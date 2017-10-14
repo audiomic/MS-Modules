@@ -161,4 +161,4 @@ MultWidget::MultWidget()
 	addChild(createValueLight<SmallLight<GreenRedPolarityLight>>(Vec(103, 19), &module->lights[2]));
 	
 	
-};	
+};
