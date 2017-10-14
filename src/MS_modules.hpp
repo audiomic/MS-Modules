@@ -53,3 +53,7 @@ struct SilverSixPort : SVGPort {
 struct RandomSourceWidget : ModuleWidget {
 	RandomSourceWidget();
 };
+
+struct MultWidget : ModuleWidget {
+	MultWidget();
+};
