@@ -120,9 +120,9 @@ MultWidget::MultWidget()
     }
 
     addChild(createScrew<ScrewSilver>(Vec(15, 0)));
-    addChild(createScrew<ScrewSilver>(Vec(box.size.x - 35, 0)));
+    addChild(createScrew<ScrewSilver>(Vec(box.size.x - 30, 0)));
     addChild(createScrew<ScrewSilver>(Vec(15, 365)));
-    addChild(createScrew<ScrewSilver>(Vec(box.size.x - 35, 365)));
+    addChild(createScrew<ScrewSilver>(Vec(box.size.x - 30, 365)));
 
 	addInput(createInput<SilverSixPort>(Vec(15, 30), module, Mult::IN_1_INPUT));
 	addInput(createInput<SilverSixPort>(Vec(15, 60), module, Mult::IN_2_INPUT));
