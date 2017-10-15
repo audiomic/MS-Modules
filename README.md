@@ -4,8 +4,6 @@ VCV Rack Modules:
 
 Random Source
 
-![](https://github.com/Phal-anx/MS-Modules/blob/master/Image/Random%20Source.png)
-
 A good general tutorial on how to use S&H modules:
 https://www.youtube.com/watch?v=m9auf7dpMrU
 
@@ -16,6 +14,8 @@ The smaller one controls the incoming signal from the CV input.
 INFO:
 The Random Source module works in its current status but is still a work in progress.
 Therefor it will be changed (e.g. CV input will be deleted in a future release)
+
+![](https://github.com/Phal-anx/MS-Modules/blob/master/Image/Random%20Source.png)
 
 
 Mult
