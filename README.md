@@ -9,7 +9,7 @@ Random Source
 A good general tutorial on how to use S&H modules:
 https://www.youtube.com/watch?v=m9auf7dpMrU
 
-Knobs
+Knobs: 
 "Sample" is a Volume/Range knob for the Sample input.
 The smaller one controls the incoming signal from the CV input.
 
