@@ -55,7 +55,7 @@ void RandomSource::step() {
 RandomSourceWidget::RandomSourceWidget() {
 		RandomSource *module = new RandomSource();
 		setModule(module);
-		box.size = Vec(60, 380);
+		box.size = Vec(15*4, 380);
 				
 		{
 			SVGPanel *panel = new SVGPanel();
