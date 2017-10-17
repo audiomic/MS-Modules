@@ -4,13 +4,11 @@
 struct RandomSource : Module {
 		enum ParamIds {
 			RANGE_PARAM,
-			CV_PARAM,
 			NUM_PARAMS
 		};
 		
 		enum InputIds {
 			TRIG_INPUT,
-			CV_INPUT,
 			SH_INPUT,
 			NUM_INPUTS
 		};
@@ -33,11 +31,8 @@ struct RandomSource : Module {
 void RandomSource::step() {
 	
 	//sample and hold
-	float range_knob = params[RANGE_PARAM].value * 6.0;
-    	float range_cv = inputs[CV_INPUT].value * 6; 
-    	float range_cv_amt = params[CV_PARAM].value;
-    	float range = range_knob + range_cv_amt * range_cv;
-		
+	float range = params[RANGE_PARAM].value;
+    		
 	if (trigger.process(inputs[TRIG_INPUT].value)) {
 		sample = inputs[SH_INPUT].normalize(range);
 			
@@ -70,9 +65,8 @@ RandomSourceWidget::RandomSourceWidget() {
 		
 		//Param
 		addParam(createParam<GreyLargeKnob>(Vec(7, 90), module, RandomSource::RANGE_PARAM, 0.0, 1.0, 0.0));
-		addParam(createParam<GreySmallKnob>(Vec(5, 146), module, RandomSource::CV_PARAM, 0.0, 1.0, 0.0));
+		
 		//Inputs
-		addInput(createInput<SilverSixPort>(Vec(29, 192), module, RandomSource::CV_INPUT));
 		addInput(createInput<SilverSixPort>(Vec(29, 237), module, RandomSource::SH_INPUT));
 		addInput(createInput<SilverSixPort>(Vec(29, 283), module, RandomSource::TRIG_INPUT));
 		
