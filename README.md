@@ -7,7 +7,7 @@ Random Source
 A good general tutorial on how to use S&H modules:
 https://www.youtube.com/watch?v=m9auf7dpMrU
 
-"Sample" knob is a Volume/Range control for the Sample input.
+"Sample" knob is a Volume control for the Sample input.
 
 
 
