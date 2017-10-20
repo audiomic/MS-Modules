@@ -16,4 +16,7 @@ https://www.youtube.com/watch?v=m9auf7dpMrU
 
 Mult
 
+This multiplier got 3x 2 inputs and 3x 6 outputs.
+With the +/- switches you can decide whether the two incoming signals are either added or subtracted from each other.
+
 ![](https://github.com/Phal-anx/MS-Modules/blob/master/Image/Mult.png)
